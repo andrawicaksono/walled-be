@@ -20,8 +20,8 @@ const verifyToken = (userService, tokenService) => async (req, res, next) => {
   }
 };
 
-module.exports = (userService) => {
+module.exports = (userService, tokenService) => {
   return {
-    verifyToken: verifyToken(userService),
+    verifyToken: verifyToken(userService, tokenService),
   };
 };

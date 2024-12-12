@@ -14,6 +14,7 @@ const registerUserFormatter = (data) => {
 const loginFormatter = (data) => {
   return {
     user: {
+      id: data.user.id,
       full_name: data.user.full_name,
       email: data.user.email,
       phone_number: data.user.phone_number,
