@@ -1,12 +1,10 @@
-const { AppError } = require("../utils/error");
-
 const findUserById = (db) => async (id) => {
   const query = "SELECT * FROM users WHERE id = $1";
 
   try {
     const result = await db.query(query, [id]);
 
-    if (result.rowCount === 0) throw new AppError("User not found", 404);
+    if (result.rowCount === 0) return [null, null];
 
     return [result.rows[0], null];
   } catch (err) {
@@ -20,7 +18,7 @@ const findUserByEmail = (db) => async (email) => {
   try {
     const result = await db.query(query, [email]);
 
-    if (result.rowCount === 0) throw new AppError("User not found", 404);
+    if (result.rowCount === 0) return [null, null];
 
     return [result.rows[0], null];
   } catch (err) {
