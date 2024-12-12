@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { userController, authMiddleware } = require("../config/container");
+const { userController, authMiddleware } = require("../container");
 
 // router.get("/:id", userController.getUserById);
 router.get(

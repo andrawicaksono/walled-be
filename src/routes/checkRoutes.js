@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { checkController } = require("../config/container");
+const { checkController } = require("../container");
 
 router.get("/", checkController.checkHealth);
 

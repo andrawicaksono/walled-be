@@ -1,5 +1,5 @@
 const express = require("express");
-const config = require("./config/config");
+const config = require("./config");
 const routes = require("./routes");
 const { errorHandler } = require("./middlewares/errorHandler");
 
