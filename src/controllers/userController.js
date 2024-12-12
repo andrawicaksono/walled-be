@@ -6,7 +6,7 @@ const getUserById = (userService) => async (req, res, next) => {
 
     if (err) throw err;
 
-    res.status(200).send({
+    res.status(200).json({
       status: "success",
       message: "Get user success",
       data: user,
