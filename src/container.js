@@ -2,16 +2,19 @@ const config = require("./config");
 
 // Repositories
 const UserRepository = require("./repository/userRepository");
+const TransactionRepository = require("./repository/transactionRepository");
 
 // Services
 const UserService = require("./services/userService");
 const AuthService = require("./services/authService");
 const TokenService = require("./services/tokenService");
+const TransactionService = require("./services/transactionService");
 
 // Controllers
 const CheckController = require("./controllers/checkController");
 const UserController = require("./controllers/userController");
 const AuthController = require("./controllers/authController");
+const TransactionController = require("./controllers/transactionController");
 
 // Middlewares
 const AuthMiddleware = require("./middlewares/auth");
@@ -30,9 +33,15 @@ const authService = AuthService(userRepository, tokenService);
 const authController = AuthController(authService);
 const authMiddleware = AuthMiddleware(userService, tokenService);
 
+// Transaction
+const transactionRepository = TransactionRepository(config.db);
+const transactionService = TransactionService(transactionRepository);
+const transactionController = TransactionController(transactionService);
+
 module.exports = {
   checkController,
   userController,
   authController,
   authMiddleware,
+  transactionController,
 };
