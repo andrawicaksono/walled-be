@@ -28,8 +28,29 @@ const createTransaction = (transactionService) => async (req, res, next) => {
   }
 };
 
+const getAllUserTransactions =
+  (transactionService) => async (req, res, next) => {
+    const userId = req.user.id;
+
+    try {
+      const [transactions, err] =
+        await transactionService.getAllUserTransactions(userId);
+
+      if (err) throw err;
+
+      res.status(200).json({
+        success: true,
+        message: "Get all user transactions success",
+        data: transactions,
+      });
+    } catch (err) {
+      next(err);
+    }
+  };
+
 module.exports = (transactionService) => {
   return {
     createTransaction: createTransaction(transactionService),
+    getAllUserTransactions: getAllUserTransactions(transactionService),
   };
 };

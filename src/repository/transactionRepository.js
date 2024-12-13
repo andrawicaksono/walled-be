@@ -17,8 +17,23 @@ const createTransaction = (db) => async (data) => {
   }
 };
 
+const findAllUserTransactions = (db) => async (userId) => {
+  const query = "SELECT * FROM transactions WHERE user_id = $1";
+
+  try {
+    const result = await db.query(query, [userId]);
+
+    if (result.rowCount === 0) return [null, null];
+
+    return [result.rows, null];
+  } catch (err) {
+    return [null, err];
+  }
+};
+
 module.exports = (db) => {
   return {
     createTransaction: createTransaction(db),
+    findAllUserTransactions: findAllUserTransactions(db),
   };
 };

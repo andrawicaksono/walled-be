@@ -8,4 +8,10 @@ router.post(
   transactionController.createTransaction
 );
 
+router.get(
+  "/",
+  authMiddleware.verifyToken,
+  transactionController.getAllUserTransactions
+);
+
 module.exports = router;
