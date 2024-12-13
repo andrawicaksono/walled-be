@@ -1,7 +1,7 @@
 const checkHealth = () => async (req, res, next) => {
   try {
     res.status(200).json({
-      status: "success",
+      success: true,
       message: "OK",
     });
   } catch (err) {

@@ -2,6 +2,7 @@ const verifyToken = (userService, tokenService) => async (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token)
     return res.status(401).json({
+      success: false,
       message: "Access denied",
     });
 
@@ -16,7 +17,10 @@ const verifyToken = (userService, tokenService) => async (req, res, next) => {
     next();
   } catch (err) {
     console.error(err);
-    res.status(403).json({ message: "Invalid token" });
+    res.status(403).json({
+      success: false,
+      message: "Invalid token",
+    });
   }
 };
 

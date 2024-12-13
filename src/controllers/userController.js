@@ -9,7 +9,7 @@ const getUserById = (userService) => async (req, res, next) => {
     if (err) throw err;
 
     res.status(200).json({
-      status: "success",
+      success: true,
       message: "Get user success",
       data: user,
     });
@@ -27,7 +27,7 @@ const getAuthenticatedUser = (userService) => async (req, res, next) => {
     if (err) throw err;
 
     res.status(200).json({
-      status: "success",
+      success: true,
       message: "Get user success",
       data: formatter.authenticatedUser(user),
     });

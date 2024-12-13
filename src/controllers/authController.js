@@ -15,6 +15,7 @@ const registerUser = (authService) => async (req, res, next) => {
     if (err) throw err;
 
     res.status(201).json({
+      success: true,
       message: "Register user success",
       data: formatter.registerUser(newUser),
     });
@@ -31,6 +32,7 @@ const login = (authService) => async (req, res, next) => {
     if (err) throw err;
 
     res.status(200).json({
+      success: true,
       message: "Login success",
       data: formatter.login(result),
     });
