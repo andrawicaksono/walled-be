@@ -18,18 +18,12 @@ const getUserById = (userService) => async (req, res, next) => {
   }
 };
 
-const getAuthenticatedUser = (userService) => async (req, res, next) => {
-  const id = req.user.id;
-
+const getAuthenticatedUser = () => async (req, res, next) => {
   try {
-    const [user, err] = await userService.getUserById(id);
-
-    if (err) throw err;
-
     res.status(200).json({
       success: true,
       message: "Get user success",
-      data: formatter.authenticatedUser(user),
+      data: formatter.authenticatedUser(req.user),
     });
   } catch (err) {
     next(err);
@@ -39,6 +33,6 @@ const getAuthenticatedUser = (userService) => async (req, res, next) => {
 module.exports = (userService) => {
   return {
     getUserById: getUserById(userService),
-    getAuthenticatedUser: getAuthenticatedUser(userService),
+    getAuthenticatedUser: getAuthenticatedUser(),
   };
 };
