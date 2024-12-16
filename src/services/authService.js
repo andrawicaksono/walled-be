@@ -18,6 +18,7 @@ const registerUser = (userRepository) => async (data) => {
       email: data.email,
       password: hashedPassword,
       phoneNumber: data.phoneNumber,
+      avatarUrl: data.avatarUrl,
       accountNo: accountNo,
     };
 

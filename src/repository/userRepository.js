@@ -28,7 +28,7 @@ const findUserByEmail = (db) => async (email) => {
 
 const createUser = (db) => async (data) => {
   const query =
-    "INSERT INTO users (full_name, email, password, phone_number, account_no) VALUES ($1, $2, $3, $4, $5) RETURNING *";
+    "INSERT INTO users (full_name, email, password, phone_number, avatar_url, account_no) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *";
 
   try {
     const result = await db.query(query, [
@@ -36,8 +36,21 @@ const createUser = (db) => async (data) => {
       data.email,
       data.password,
       data.phoneNumber,
+      data.avatarUrl,
       data.accountNo,
     ]);
+
+    return [result.rows[0], null];
+  } catch (err) {
+    return [null, err];
+  }
+};
+
+const updateBalance = (db) => async (data) => {
+  const query = "UPDATE users SET balance = $1 WHERE id = $2 RETURNING *";
+
+  try {
+    const result = await db.query(query, [data.balance, data.id]);
 
     return [result.rows[0], null];
   } catch (err) {
@@ -50,5 +63,6 @@ module.exports = (db) => {
     findUserById: findUserById(db),
     findUserByEmail: findUserByEmail(db),
     createUser: createUser(db),
+    updateBalance: updateBalance(db),
   };
 };

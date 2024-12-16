@@ -8,6 +8,7 @@ const registerUser = (authService) => async (req, res, next) => {
     email: data.email,
     password: data.password,
     phoneNumber: data.phone_number,
+    avatarUrl: data.avatar_url,
   };
 
   try {

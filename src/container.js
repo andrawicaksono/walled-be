@@ -35,7 +35,10 @@ const authMiddleware = AuthMiddleware(userService, tokenService);
 
 // Transaction
 const transactionRepository = TransactionRepository(config.db);
-const transactionService = TransactionService(transactionRepository);
+const transactionService = TransactionService(
+  transactionRepository,
+  userRepository
+);
 const transactionController = TransactionController(transactionService);
 
 module.exports = {
