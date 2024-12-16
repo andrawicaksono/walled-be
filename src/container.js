@@ -1,8 +1,8 @@
 const config = require("./config");
 
 // Repositories
-const UserRepository = require("./repository/userRepository");
-const TransactionRepository = require("./repository/transactionRepository");
+const UserRepository = require("./repositories/userRepository");
+const TransactionRepository = require("./repositories/transactionRepository");
 
 // Services
 const UserService = require("./services/userService");
