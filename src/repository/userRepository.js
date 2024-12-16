@@ -47,7 +47,8 @@ const createUser = (db) => async (data) => {
 };
 
 const updateBalance = (db) => async (data) => {
-  const query = "UPDATE users SET balance = $1 WHERE id = $2 RETURNING *";
+  const query =
+    "UPDATE users SET balance = $1, updated_at = NOW() WHERE id = $2 RETURNING *";
 
   try {
     const result = await db.query(query, [data.balance, data.id]);
