@@ -9,7 +9,7 @@ const createTransaction = (transactionService) => async (req, res, next) => {
     type: data.type,
     fromTo: data.from_to,
     description: data.description,
-    amount: data.amount,
+    amount: Number(data.amount),
   };
 
   try {
